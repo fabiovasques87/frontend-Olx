@@ -1,0 +1,24 @@
+front end projeto olx
+
+Instalar o redux:
+npm install redux react-redux --save
+
+importar as dependencias no primeiro arquivo que é executado (index.html).
+import {createStore} from 'redux';
+import {provider} from 'react-redux';
+
+instalar biblioteca de router...
+npm install react-router-dom --save
+
+Criar o arquivo Routes.js no SRC e colocar as segintes importações:
+
+import React from 'react';
+
+criar a pasta components no SRC e em seguida o arquivo MainComponents-> Servirá para componentizar o arquivo App.js
+
+instalar a dependencia styles-component
+
+npm install styled-components --save
+
+criar uma subpasta dentro de components chamada partials para os components parciais que serão fixos no App como: Header e Footer, botões padrões etc...
+
