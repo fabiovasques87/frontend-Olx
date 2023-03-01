@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Page = ()=> {
     return (
         <div>
-            página About
+            página About<br />
             <Link to={'/'}>Ir para Home</Link>
 
         </div>

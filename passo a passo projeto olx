@@ -22,3 +22,8 @@ npm install styled-components --save
 
 criar uma subpasta dentro de components chamada partials para os components parciais que serão fixos no App como: Header e Footer, botões padrões etc...
 
+instalar dependecias para cookies
+npm install js-cookie --save
+
+o arquivo authHandler é responsável por fazer a válidacao do usuário se está logado ou não...
+

@@ -16,7 +16,6 @@ const Page = (props) => {
                   <MyRoutes />
               <Footer />
             </Template>
-            <MyRoutes />
           </div>
 
   );
