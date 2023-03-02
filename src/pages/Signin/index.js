@@ -43,10 +43,8 @@ const Page =() =>{
                 <PageArea>
                     {/*se tiver erro , exibe a mensagem de erro  */}
 
-                    {error && 
-                    
-                        <ErrorMessage>{ErrorMessage}</ErrorMessage>
-                    
+                    {error &&                     
+                        <ErrorMessage>{Error}</ErrorMessage>                    
                     }
 
 
