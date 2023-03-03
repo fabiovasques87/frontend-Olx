@@ -27,3 +27,6 @@ npm install js-cookie --save
 
 o arquivo authHandler é responsável por fazer a válidacao do usuário se está logado ou não...
 
+dependencia de queryString
+
+npm install qs --save

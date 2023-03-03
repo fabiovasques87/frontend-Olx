@@ -20,7 +20,7 @@ const Page =() =>{
 
     const handleSubmit =  async(e)=>{
         e.preventDefault();
-        setDisable(true);
+        setDisable(false);
 
         //fazer a consulta de login
         const json = await api.login(email, password);
@@ -35,6 +35,8 @@ const Page =() =>{
             window.location.href = '/'; //manda ele para a raiz do projeto....
         }
 
+         setDisable(true);
+
     }
 
     return (
@@ -44,9 +46,9 @@ const Page =() =>{
                     {/*se tiver erro , exibe a mensagem de erro  */}
 
                     {error &&                     
-                        <ErrorMessage>{Error}</ErrorMessage>                    
+                        <ErrorMessage>{error}</ErrorMessage>                    
                     }
-
+        
 
                     <form onSubmit={handleSubmit}>
                         <label className="area"> 
@@ -57,6 +59,7 @@ const Page =() =>{
                                     disabled={disable}
                                     value={email}
                                     onChange={e=>setEmail(e.target.value)}
+                                    required
                                 />
                             </div>
                         </label>
@@ -67,6 +70,7 @@ const Page =() =>{
                                  disabled={disable}
                                  value={password}
                                  onChange={e=>setPassword(e.target.value)}
+                                 required
                                  />
                             </div>
                         </label>
@@ -77,7 +81,7 @@ const Page =() =>{
                                 className="checkbox" 
                                 disabled={disable}
                                 checked={rememberPassword}
-                                onClick={()=>setrememberPassword(!rememberPassword)}
+                                onChange={()=>setrememberPassword(!rememberPassword)}
                                 />
                             </div>
                         </label>

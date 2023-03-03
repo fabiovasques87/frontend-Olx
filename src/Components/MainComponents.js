@@ -21,10 +21,13 @@ export const PageBody = styled.div``;
 
 //exiber o erro se não tiver token...
 export const ErrorMessage = styled.div`
-    margin:10p 0x;
+    margin:10px 0;
     background-color: #FFCACA;
     color:#000;
-    border: 1px solid #FF0000;
+    border: 2px solid #FF0000;
     padding: 10px;
+    font-size:18px;
+    font-weight:bold;
+    text-align:center;
 
 `;
