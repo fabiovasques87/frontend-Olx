@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {HeaderArea} from './styled';
 
+
 import { isLogged, doLogout } from "../../../helpers/AuthHandler";
 
 export const Header = () =>{
@@ -54,7 +55,7 @@ export const Header = () =>{
                                 <Link to="/signin">Login</Link>
                             </li>
                             <li>
-                                <Link to="/signup">Cadastrar</Link>
+                                <Link to="/signUp">Cadastrar</Link>
                             </li>
                             <li>
                                 <Link to="/signin" className="button">Poste um anuncio</Link>

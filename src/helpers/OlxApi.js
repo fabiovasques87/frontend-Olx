@@ -73,6 +73,13 @@ const OlxApi = {
             {email, password}
         );
         return json;
+    },
+
+    getStates: async () => {
+        const json = await apiFetchGet(
+            '/states'
+        );
+        return json.states;   //retorna o estados do banco
     }
 };
 
