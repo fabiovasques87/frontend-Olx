@@ -34,20 +34,30 @@ const Page =() =>{
     const handleSubmit =  async(e)=>{
         e.preventDefault();
         setDisable(true);
+        setError(''); //limpa o erro
 
-        //fazer a consulta de login
 
-        // const json = await api.login(email, password);
+        //verificar os campos senha e confirmar senha, se são iguais...
+        if(password !== confirmPassword){
+            setError('Senhas não são iguais...');
+            setDisable(false);
+            return;
+        }
 
-        // if(json.error){
-        //     setError(json.error);
-        // }else{
-        //     //caso não tenha erro, é pq veio o token...
 
-        //     doLogin(json.token, rememberPassword);//salva o cokkie
-        //     //após salvar  o cokkie, atualiza a página...
-        //     window.location.href = '/'; //manda ele para a raiz do projeto....
-        // }
+        //fazer a consulta
+
+        const json = await api.register(name, email, password, stateLoc); //envia todos os campos para o olxApi
+
+        if(json.error){
+            setError(json.error);
+        }else{
+            //caso não tenha erro, é pq veio o token...
+
+            doLogin(json.token);
+            //após salvar  o cokkie, atualiza a página...
+            window.location.href = '/'; //manda ele para a raiz do projeto....
+        }
 
          setDisable(false);
 

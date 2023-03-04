@@ -75,6 +75,17 @@ const OlxApi = {
         return json;
     },
 
+    register: async (name, email, password, stateLoc) => {
+        //após receber as informações como parametro na função vindas do signUp
+        //ele faz a requisição ao web service...
+        const json = await apiFetchPost(
+            '/user/signup',
+            //body: corpo da página...
+            {name, email, password, state: stateLoc}
+        );
+        return json; //vai retornar com erro ou com o token de sucesso...
+    },
+
     getStates: async () => {
         const json = await apiFetchGet(
             '/states'

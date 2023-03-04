@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Page = ()=> {
     return (
         <div>
-            página inicial <br />
+            <h1>página inicial </h1><br />
             <Link to={'/About'}>Ir para About</Link>
         </div>
     );

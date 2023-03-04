@@ -21,6 +21,7 @@ const Page =() =>{
     const handleSubmit =  async(e)=>{
         e.preventDefault();
         setDisable(true);
+        setError(''); //se errar a senha e quando clicar para enviar, vau sumir o erro...
 
         //fazer a consulta de login
         const json = await api.login(email, password);
