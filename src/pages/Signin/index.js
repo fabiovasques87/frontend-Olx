@@ -35,7 +35,7 @@ const Page =() =>{
             window.location.href = '/'; //manda ele para a raiz do projeto....
         }
 
-         setDisable(true);
+         setDisable(false);
 
     }
 
