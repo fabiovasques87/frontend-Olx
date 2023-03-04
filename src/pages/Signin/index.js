@@ -20,7 +20,7 @@ const Page =() =>{
 
     const handleSubmit =  async(e)=>{
         e.preventDefault();
-        setDisable(false);
+        setDisable(true);
 
         //fazer a consulta de login
         const json = await api.login(email, password);
