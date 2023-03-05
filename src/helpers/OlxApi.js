@@ -91,6 +91,13 @@ const OlxApi = {
             '/states'
         );
         return json.states;   //retorna o estados do banco
+    },
+
+    getCategories: async () => {
+        const json = await apiFetchGet(
+            '/categories'
+        );
+        return json.categories;
     }
 };
 
