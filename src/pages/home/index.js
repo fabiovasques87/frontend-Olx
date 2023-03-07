@@ -4,6 +4,7 @@ import {SearchArea, PageArea} from './styled'; //puxa do css
 import useApi from '../../helpers/OlxApi';
 
 import {PageContainer} from '../../Components/MainComponents';
+import AdItem from '../../Components/partials/AdItem';
 
 
 const Page =() =>{
@@ -12,6 +13,7 @@ const Page =() =>{
 
     const[stateList, setStateList]= useState([]); //Lista dos estados
     const [categories, setCategories] = useState([]); //lista das categorias
+    const [adList, setAdList] = useState([]); //lista os ultimos anuncios
 
     //vai pegar os estados
     useEffect (()=>{
@@ -20,6 +22,21 @@ const Page =() =>{
             setStateList(slist);
         }
         getStates();
+    },[]);
+
+
+    //vai pegar os anuncios recentes
+    useEffect (()=>{
+        const getRecentsAds = async () =>{
+            const json = await api.getAds({
+                //pegar os ultimos anuncios...
+                sort : 'desc', 
+                limit:8
+            });
+            //Quando receber o retorno, guarda no setAdList();
+            setAdList(json.ads);
+        }
+        getRecentsAds();
     },[]);
 
 
@@ -64,7 +81,21 @@ const Page =() =>{
             </SearchArea>
             <PageContainer>
                 <PageArea>
-                   ...
+                   <h2>Anuncios recentes</h2>
+                   <div className="list">
+                        {adList.map((i,k)=>
+                            <AdItem key={k} data={i} /> //as infornações irão estar em i
+                        )}
+                   </div>
+                   <Link to="/ads" className="seeAllLink"> Ver todos</Link>
+                   <hr />
+
+
+                   Lorem Ipsum é simplesmente uma simulação de texto da indústria 
+                   tipográfica e de impressos, e vem sendo utilizado desde o século XVI,
+                    quando um impressor desconhecido pegou uma bandeja de tipos e os 
+                    embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não
+
                 </PageArea>            
         </PageContainer>
         </>
