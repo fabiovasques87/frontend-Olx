@@ -6,6 +6,7 @@ import About from '../pages/About';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import SignUp from '../pages/SignUp';
+import AdPage from '../pages/AdPage';
 
 
 import {useRoutes } from 'react-router-dom';
@@ -18,6 +19,7 @@ export const MyRoutes =  () => {
             {path: '/About', element: <About />},
             {path: '/Signin', element:<Signin />},
             {path: '/SignUp', element:<SignUp />},
+            {path: '/ad/:id', element:<AdPage />},
             {path: '*', element:<NotFound />}
 
         ]   

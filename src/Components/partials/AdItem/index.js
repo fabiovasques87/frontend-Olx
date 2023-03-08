@@ -6,7 +6,7 @@ import  {Item} from './styled';
 export default (props) => {
 
     let price = '';
-    //Se o preço é negociavel....
+    //Se o preço é negociavel....   
 
     if(props.data.priceNegotiable){
         price =   'Preço negociável';
@@ -17,7 +17,7 @@ export default (props) => {
 
     return (
            <Item className="aditem" >
-                <Link to={'/ad/${props.data.id}'}>
+                <Link to={`/ad/${props.data.id}`}>
                     <div className="itemImage">
                         <img src={props.data.image} alt= ""   />
                     </div>
