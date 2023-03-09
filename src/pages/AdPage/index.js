@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {PageArea, Fake} from './styled'; //puxa do css
 import useApi from '../../helpers/OlxApi';
@@ -13,7 +13,17 @@ const Page =() =>{
     const {id} = useParams();
     
     const [loading, setLoading] = useState(true);
-    const [adInfo, setAdInfo] = useState([]); //armazena as informações do anuncio...
+    const [adInfo, setAdInfo] = useState({}); //armazena as informações do anuncio...
+
+    //puxar as informações do anuncio especifico...
+    useEffect(()=>{
+        const getAdInfo = async (id) =>{
+            const json = await api.getAd(id, true);  //true se quiser mais informações do mesmo vendedor(anunciante)
+            setAdInfo(json); // logo após pegar as informações...
+            setLoading(false);
+        }   
+        getAdInfo(id);
+    }, []);
 
     return (
         <PageContainer>
@@ -28,6 +38,12 @@ const Page =() =>{
                                 <div className="adName">
                                     {/*Quando estiver carregando.... usa o componente fake */}
                                     {loading && <Fake  height={20}/> }
+                                    {/*Se existir... */}
+
+                                    {adInfo.title &&
+                                        <h2>{adInfo.title}</h2>
+                                    
+                                    }
                                 </div>
                                 <div className="adDescription">
                                     {/*Quando estiver carregando.... usa o componente fake */}
