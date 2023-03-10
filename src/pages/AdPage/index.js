@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
+import { Slide } from 'react-slideshow-image';
+import "react-slideshow-image/dist/styles.css";
 import {PageArea, Fake} from './styled'; //puxa do css
 import useApi from '../../helpers/OlxApi';
 
@@ -25,6 +27,19 @@ const Page =() =>{
         getAdInfo(id);
     }, []);
 
+    //Funcao para formatar a data
+    const formatDate = (date) => {
+        let cDate = new Date(date);
+        let months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+        'julho', 'agosto', 'setembro', 'outubto', 'novembro', 'dezembro'];
+        let cDay = cDate.getDate();
+        let cMonth = cDate.getMonth();
+        let cYear = cDate.getFullYear();
+
+        return `${cDay} de ${months[cMonth]} de ${cYear}` ;
+    }
+
+
     return (
         <PageContainer>
                 <PageArea>                   
@@ -33,6 +48,22 @@ const Page =() =>{
                             <div className="adImage">
                                  {/*Quando estiver carregando.... usa o componente fake */}
                                  {loading && <Fake  height={300}/> }
+                                {/*Se tiver as imagens para exibir... */}
+                                {adInfo.images &&
+                                   
+                                    <div>
+                                         <Slide>
+                                            {adInfo.images.map((img, k)=>
+                                                <div key={k} className="each-slide">
+                                                    <img src={img} alt="" />
+                                                </div>
+                                            )}
+                                            {/* <div>teste</div> */}
+                                        </Slide>
+                                    </div>
+                                }
+                                
+
                             </div>
                             <div className="adInfo">
                                 <div className="adName">
@@ -44,10 +75,19 @@ const Page =() =>{
                                         <h2>{adInfo.title}</h2>
                                     
                                     }
+                                    {adInfo.dateCreated &&
+                                    
+                                        <small>Criado em {formatDate(adInfo.dateCreated)}</small>
+                                    }
                                 </div>
                                 <div className="adDescription">
                                     {/*Quando estiver carregando.... usa o componente fake */}
                                     {loading && <Fake  height={100}/> }
+                                    {adInfo.description}
+                                    <hr/>
+                                    {adInfo.views &&
+                                        <small>Visualizações: {adInfo.views}</small>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -56,13 +96,37 @@ const Page =() =>{
                         <div className="box box--padding">
                              {/*Quando estiver carregando.... usa o componente fake */}
                              {loading && <Fake  height={20}/> }
-                        </div>
-                        <div className="box box--padding">
-                            {/*Quando estiver carregando.... usa o componente fake */}
-                            {loading && <Fake  height={50}/> }
-                        </div>
+                             {/*Quando tiver o priceNegotiable....  */}
 
-                        
+                             {adInfo.priceNegotiable &&
+                                "Preço Negociável"    
+                             }       
+                              {/*Quando não existir o priceNegotiable e existir o price...  */}
+                             {!adInfo.priceNegotiable && adInfo.price &&
+                             
+                                <div className="price">Preço: <span>R$ {adInfo.price}</span> </div>
+                             }
+
+                        </div>
+                        {/*Quando estiver carregando.... usa o componente fake */}
+                        {loading && <Fake  height={50}/> }
+
+                         {adInfo.userInfo && 
+
+                            <>
+                                <a href={`malito: ${adInfo.userInfo.email}`} target="_blank" className="contactSellerLink" >Falar com o vendedor</a>
+
+                                <div className="createBy box box--padding">
+                                    Criado por: 
+                                    <strong>{adInfo.userInfo.name}</strong>
+                                    <small>Email: {adInfo.userInfo.email}</small>
+
+
+                                </div>
+                            </>
+                         
+                         }    
+  
                     </div>
                 </PageArea>            
         </PageContainer>

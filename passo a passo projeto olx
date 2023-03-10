@@ -30,3 +30,6 @@ o arquivo authHandler é responsável por fazer a válidacao do usuário se est�
 dependencia de queryString
 
 npm install qs --save
+
+componente de slideshow para react
+npm install react-slideshow-image --save
