@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Slide } from 'react-slideshow-image';
 import "react-slideshow-image/dist/styles.css";
-import {PageArea, Fake} from './styled'; //puxa do css
+import {PageArea, Fake, OthersArea,BreadChumb} from './styled'; //puxa do css
 import useApi from '../../helpers/OlxApi';
 
 import {PageContainer} from '../../Components/MainComponents';
+import AdItem from '../../Components/partials/AdItem';
 
 
 const Page =() =>{
@@ -42,6 +43,19 @@ const Page =() =>{
 
     return (
         <PageContainer>
+            {adInfo.category &&
+
+                <BreadChumb>
+                    Você está aqui:
+                    <Link to="/">Home</Link>
+                    /
+                    <Link to={`/ads?state=${adInfo.stateName}`}>{adInfo.stateName}</Link>
+                    /
+                    <Link to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}>{adInfo.category.name}</Link>
+                    / {adInfo.title}
+
+                </BreadChumb>
+                }
                 <PageArea>                   
                     <div className="leftSide">
                         <div className="box">
@@ -128,7 +142,23 @@ const Page =() =>{
                          }    
   
                     </div>
-                </PageArea>            
+                </PageArea>   
+                <OthersArea>
+                    {adInfo.other &&
+                            
+                            <>
+                            <h2>Outras ofertas do vendedor</h2>
+                            <div className="list">
+                                {adInfo.others.map((i, k)=>
+                                    <AdItem  key={i} data={i}/>
+
+                                )}
+                            </div>
+                        
+                        </>
+                    }
+                </OthersArea>
+      
         </PageContainer>
     );
 }

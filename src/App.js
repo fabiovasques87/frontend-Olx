@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import {MyRoutes} from './Routes/myRoutes';
+import App from './Routes/myRoutes';
 
 import { Template } from "./Components/MainComponents";
 import { Header } from "./Components/partials/Header";
@@ -13,7 +13,7 @@ const Page = (props) => {
           <div>
             <Template>
               <Header />
-                  <MyRoutes />
+                  <App />
               <Footer />
             </Template>
           </div>
