@@ -11,6 +11,7 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import SignUp from '../pages/SignUp';
 import AdPage from '../pages/AdPage';
+import AddAd from '../pages/AddAd';
 
 
 //import {useRoutes } from 'react-router-dom';
@@ -25,7 +26,7 @@ return (
         <Route path='/Signin' element={ <Signin /> } />
         <Route path='/SignUp' element={ <SignUp /> } />
         <Route path='/ad/:id' element={ <AdPage /> } />
-        <Route path='/post-an-ad' element={ <RouteHandler><About /></RouteHandler> } />
+        <Route path='/post-an-ad' element={ <RouteHandler><AddAd /></RouteHandler> } />
         <Route path='*' element={ <NotFound /> } />
         {/* <Route path='/About' element={ <About /> } />
         <Route path='/Signin' element={ <Signin/> } />
