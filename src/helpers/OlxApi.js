@@ -3,6 +3,34 @@ import qs from "qs";
 
 const BASEAPI = 'http://localhost:5000';
 
+const apiFetchFile = async (endpoint, body) =>{
+
+    //se não estiver enviando nemhum tipo de token...
+    if(!body.token){
+        //pega o que está no cookie...
+        let token = Cookies.get('token');
+        //se realmente existe e está preenchido...
+        if(token){
+            body.append('token', token);
+        }
+    }
+
+    const res = await fetch(BASEAPI+endpoint,{
+        method: 'POST',
+        body
+    });
+    const json = await res.json();
+    //recebe a resposta do json...
+    if(json.notallowed){
+        window.location.href = '/signin';
+        return; //para finalizar a execução
+    }
+    return json; //caso não tenha a notallowed ele retorna o proprio resultado da requisissão
+
+}
+
+
+
 const apiFetchPost = async (endpoint, body) => {
 
     //se não estiver enviando nemhum tipo de token...
@@ -93,6 +121,8 @@ const OlxApi = {
         return json.states;   //retorna o estados do banco
     },
 
+
+
     getCategories: async () => {
         const json = await apiFetchGet(
             '/categories'
@@ -111,6 +141,16 @@ const OlxApi = {
             '/ad/item',
             {id, other}
         );
+        return json;
+    },
+
+    addAd: async (fData) =>{
+        //enviar arquivos para api
+        const json = await apiFetchFile(
+            '/ad/add',
+            fData
+        );
+        //retorna o resultado
         return json;
     }
 };
