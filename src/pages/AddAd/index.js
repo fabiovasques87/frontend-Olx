@@ -6,7 +6,7 @@ import useApi from '../../helpers/OlxApi';
 
 
 import {PageContainer, PageTitle, ErrorMessage} from '../../Components/MainComponents';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const Page =() =>{
