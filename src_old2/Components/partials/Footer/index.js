@@ -5,8 +5,7 @@ import {FooterArea} from './styled';
 export const Footer = () =>{
     return (
         <FooterArea> 
-            Desenvolvido por Fábio vaqsues <br />
-            OLX clone
+            Desenvolvido por Fábio vaqsues
         </FooterArea>
     );
 }

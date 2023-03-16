@@ -113,37 +113,6 @@ export const PageArea = styled.div`
 
     }   
 
-    @media(max-width: 600px){
-
-        &{
-            flex-direction: column;
-        }
-
-        .leftSide{
-            margin: 0;
-
-            .box{
-                width: 320px;
-                flex-direction: column;
-                margin: auto;
-            }
-            .adInfo{
-                padding: 10px;  
-            }
-        }
-
-        .rightSide{
-            width: auto;
-            
-            margin-top: 20px;
-            .box{
-                width: 320px;
-                margin: auto;
-            }    
-
-        }
-    }
-
 `;
 
 export const OthersArea = styled.div`

@@ -48,8 +48,6 @@ export const SearchArea = styled.div`
                 cursor: pointer;
             }
         }
-
-
     }
     .categoryList {
         display: flex;
@@ -80,31 +78,6 @@ export const SearchArea = styled.div`
 
     }
 
-    @media(max-width: 600px){
-        .searchBox form {
-            flex-direction: column;
-
-            input {
-                padding: 10px;
-                margin-right:0;
-                margin-bottom:10px;
-            }
-
-            select {
-                width: 100%;
-                margin-bottom:10px;
-            }
-        }
-
-        .categoryList{
-            margin: 20px;
-        }
-
-        .categoryList .categoryItem{
-            width:50%;
-        }
-    }
-
 `;
 
 export const PageArea = styled.div`
@@ -128,22 +101,6 @@ export const PageArea = styled.div`
         text-decoration:none;
         font-weight: bold;
         display: inline-block;
-    }
-
-    @media(max-width:600px){
-
-        &{
-            margin: 10px;
-        }
-
-        h2{
-            margin:10px;
-            text-align: justify;
-        }
-
-        .list .aditem{
-            width:50%;
-        }
     }
 
 `;

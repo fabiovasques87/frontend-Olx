@@ -15,7 +15,6 @@ const Page =() =>{
     const fileField = useRef();
     const history = useNavigate();
 
-
     const [categories, setCategories] = useState([]);  //Lista toda...
 
     const [title, setTitle] = useState('');

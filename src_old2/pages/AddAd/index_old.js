@@ -1,110 +1,48 @@
-import React, {useState,useEffect, useRef} from "react";
-import MaskedInput from "react-text-mask";
-import  createNumberMask  from "text-mask-addons/dist/createNumberMask";
+import React, {useState, useRef} from "react";
 import {PageArea} from './styled'; //puxa do css
 import useApi from '../../helpers/OlxApi';
-
+import {doLogin} from '../../helpers/AuthHandler';
 
 import {PageContainer, PageTitle, ErrorMessage} from '../../Components/MainComponents';
-import { useNavigate, useParams } from "react-router-dom";
 
 
 const Page =() =>{
 
     const api  = useApi(); //é usado em formato de hook
     const fileField = useRef();
-    const history = useNavigate();
-
-
-    const [categories, setCategories] = useState([]);  //Lista toda...
 
     const [title, setTitle] = useState('');
-    const[category, setCategory] = useState ('');  //item selecionado
+    const[category, setCategory] = useState ('');
     const [price, setPrice] = useState ('');
     const [priceNegotiable, setPriceNegotiable] = useState (false);
     const [desc, setDesc] = useState('');
     
-    const [disabled, setDisabled] = useState(false);
+    const [disabled, setDisable] = useState(false);
     const [error, setError] =  useState('');
 
-    useEffect(()=>{
-        const getCategories = async ()=>{
-            const cats = await api.getCategories();
-            setCategories(cats);
-        }
-        getCategories();
-    },[]);
+
 
     const handleSubmit =  async(e)=>{
-     e.preventDefault();
-     setDisabled(true);
-     setError(''); //limpa os erros
+    //     e.preventDefault();
+    //     setDisable(true);
+    //     setError(''); //se errar a senha e quando clicar para enviar, vau sumir o erro...
 
-     let errors = [];
-     //se digitou um titulo
-    // trim, remove os espaços
+    //     //fazer a consulta de login
+    //     const json = await api.login(email, password);
 
-    if(!title.trim()){
-        error.push('Sem Título');
-    }
+    //     if(json.error){
+    //         setError(json.error);
+    //     }else{
+    //         //caso não tenha erro, é pq veio o token...
 
-    //caso nao tenha uma categoria selecionada...
-    if(!category){
-        errors.push('Sem categoria');
-    }
+    //         doLogin(json.token, rememberPassword);//salva o cokkie
+    //         //após salvar  o cokkie, atualiza a página...
+    //         window.location.href = '/'; //manda ele para a raiz do projeto....
+    //     }
 
-    //se algum erro passou pelas condições adima...
-    if(errors.length === 0) {
-        //continua...
-        const fData = new FormData();
-        //adiciona os itens
-        fData.append('title', title);
-        fData.append('price', price);
-        fData.append('priceneg', priceNegotiable);
-        fData.append('desc', desc);
-        fData.append('cat', category);
-
-        //add as imagens...
-        //caso tenha imagens...
-
-        if(fileField.current.files.length > 0){
-            for(let i = 0; i < fileField.current.files.length; i++){
-                fData.append('img', fileField.current.files[i]);
-
-            }
-        }
-
-        //fazendo a requisição...
-        const json = await api.addAd(fData);
-        //se nao gerou erro...ele manda parao proprio ID do anuncio...
-        if(!json.error){
-            history(`/ad/${json.id}`); //Se n huver erro, ele retorna o id do anuncio, e vai para o proprio anuncio
-             return;
-        }else {
-            //caso de algum erro...mostra o erro
-            setError(json.error); 
-        }
-
-
-    }else{
-        //exibe os erros
-        setError(errors.join("\n"));
-    }
-
-        setDisabled(false);
-
+    //      setDisable(false);
 
      }
-
-
-     const priceMask = createNumberMask({
-        prefix: 'R$ ',
-        includeThousandsSeparator: true, //inclui o separador de milhares
-        thousandsSeparatorSymbol:'.', //informa o simbolo dele
-        allowDecimal: true, //permitir decimais
-        decimalSymbol:','//simbolo dos decimais
-
-     });
 
     return (
         <PageContainer>
@@ -133,31 +71,13 @@ const Page =() =>{
                         <label className="area"> 
                             <div className="area--title">Categoria</div>
                             <div className="area--input">
-                                <select
-                                    disabled={disabled}
-                                    onChange={e=>setCategory(e.target.value)}
-                                    required
-                                >
-                                    <option></option>
-                                    {/*Caso category exista... ele da um map */}
-                                    {categories && categories.map(i=>
-                                        <option key={i._id} value={i._id}>{i.name}</option>
-                                    )}
-                                </select>
+                                <select></select>
                             </div>
                         </label>
                         <label className="area"> 
                             <div className="area--title">Preço</div>
                             <div className="area--input">
-                                {/*usando o componente */}
-                                <MaskedInput 
-                                    mask={priceMask}
-                                    placeholder="R$"
-                                    disabled={disabled || priceNegotiable }     //o Preço ficará desativado quando o priceNegotiable estiver ok
-                                    value={price}
-                                    onChange={e=>setPrice(e.target.value)}
-                                
-                                />
+                                ....
                             </div>
                         </label>
                         <label className="area"> 
