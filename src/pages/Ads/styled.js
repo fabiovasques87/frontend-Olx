@@ -119,4 +119,41 @@ export const PageArea = styled.div`
     }
 }
 
+@media(max-width: 600px){
+
+    & {
+        flex-direction: column;
+
+    }
+
+    .leftSide{
+
+        width: auto;
+        margin: 10px;
+
+        ul{
+            display: flex;
+            flex-wrap: wrap; {/*para quebrar ...  */}
+
+            li{
+                width: 40%;
+            }
+
+        }
+
+    }
+
+    .rightSide{
+        width: auto;
+        margin: 10px;
+
+        .list .aditem{
+            width: 50%;
+
+        }
+
+    }
+
+}
+
 `;

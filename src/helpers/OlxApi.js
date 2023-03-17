@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import qs from "qs";
 
-const BASEAPI = 'http://localhost:5000';
+const BASEAPI = 'http://192.168.0.109:5000';
 
 const apiFetchFile = async (endpoint, body) =>{
 

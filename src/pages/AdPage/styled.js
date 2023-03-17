@@ -133,13 +133,19 @@ export const PageArea = styled.div`
         }
 
         .rightSide{
-            width: auto;
-            
+            width: auto;            
             margin-top: 20px;
+
             .box{
                 width: 320px;
                 margin: auto;
-            }    
+                padding: 5px;
+            }
+            
+            .contactSellerLink{
+                width: 320px;
+                margin: 20px auto;
+            }
 
         }
     }
@@ -154,11 +160,24 @@ export const OthersArea = styled.div`
 
     .list{
         display: flex;
-
+        flex-wrap: wrap;
     }
 
     .aditem{
         width: 25%;
+    }
+
+
+    @media(max-width: 600px){
+        
+        & {
+            margin: 10px;
+        }
+
+        .list .aditem{
+            width: 50%;
+        }
+        
     }
 
 `;
@@ -173,6 +192,13 @@ export const BreadChumb = styled.div`
         margin: 0px 5px;
         text-decoration:underline;
         color: #000;
+    }
+
+    @media(max-width: 600px){
+
+        & {
+            margin: 20px;
+        }
     }
 
 `

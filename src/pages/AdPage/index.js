@@ -107,7 +107,7 @@ const Page =() =>{
                         </div>
                     </div>
                     <div className="rightSide">
-                        <div className="box box--padding">
+                        <div className="box">
                              {/*Quando estiver carregando.... usa o componente fake */}
                              {loading && <Fake  height={20}/> }
                              {/*Quando tiver o priceNegotiable....  */}
