@@ -82,6 +82,9 @@ border-bottom: 1px solid #CCC;
         }
     }
 
+    span{
+        font-weight: bold;
+    }
 
    }
 

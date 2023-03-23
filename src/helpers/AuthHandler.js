@@ -3,9 +3,11 @@ import  Cookies from 'js-cookie';
 
 
 export const isLogged = () => {
-    let token = Cookies.get('token');
+    const token = Cookies.get('token');
     //return, caso o token exista, retornará true, caso não exista, retornará falso.
+    //alert(token);
     return (token) ? true : false;
+   
 }
 
 export const doLogin = (token, rememberPassword = false) =>{
@@ -15,12 +17,27 @@ export const doLogin = (token, rememberPassword = false) =>{
     }else{
         //caso não sejá para lemrar a senha ...
         Cookies.set('token', token);
-
+        
 
     }
+}
+
+// export const getToken = () => {
+//    Cookies.get('token');
+// //    alert('valor do token é:',getToken);
+// }
+
+export const getToken = () => {
+    const token = Cookies.get('token');
+    //alert(token);
+    return (token);
+   
 }
 
 //Processo de logout
 export const doLogout = () => {
     Cookies.remove('token');
+    return ('token');
 }
+
+

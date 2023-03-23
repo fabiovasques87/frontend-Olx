@@ -1,7 +1,33 @@
 import Cookies from "js-cookie";
 import qs from "qs";
 
-const BASEAPI = 'http://192.168.0.109:5000';
+const BASEAPI = 'http://192.168.0.109:8000';
+
+// const BASEAPI = 'http://alunos.b7web.com.br:501';
+
+const apiFetchGetQuery = async (endpoint, query = []) => {
+
+    //se não estiver enviando nemhum tipo de token...
+    if(!query.token){
+        //pega o que está no cookie...
+        let token = Cookies.get('token');
+        //se realmente existe e está preenchido...
+        if(token){
+            query.token = token; //ele add o token...
+        }
+    }
+
+    const res = await fetch(`${BASEAPI+endpoint}?${qs.stringify(query)}`);
+    const json = await res.json();
+    //recebe a resposta do json...
+    if(json.notallowed){
+        window.location.href = '/signin';
+        return; //para finalizar a execução
+    }
+    return json; //caso não tenha a notallowed ele retorna o proprio resultado da requisissão
+
+}
+
 
 const apiFetchFile = async (endpoint, body) =>{
 
@@ -152,7 +178,15 @@ const OlxApi = {
         );
         //retorna o resultado
         return json;
-    }
+    },
+    //informações do usser logado...
+    getInfo: async (token) => {
+        const json = await apiFetchGetQuery(
+            '/user/me',
+            
+        );
+        return json;
+    },
 };
 
 

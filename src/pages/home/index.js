@@ -58,7 +58,7 @@ const Page =() =>{
                     {/*área de busca */}
                     <div className="searchBox"> 
                         <form method="GET" action="ads">
-                            <input type="text" name="q" placeholder="o qye você procura?" />
+                            <input type="text" name="q" placeholder="o que você procura?" />
                             <select name="state">
                                {stateList.map((i, k)=>(
                                     <option key={k} value={i.name}>{i.name}</option>
